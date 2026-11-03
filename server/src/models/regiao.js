@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Regiao',
+    tableName: 'Regiaos'
   });
   return Regiao;
 };

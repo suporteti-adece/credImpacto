@@ -275,7 +275,6 @@ class UserController {
 
   static async login(req, res) {
     const user = req.body;
-    console.log("user", user);
 
     try {
       // Verifica se foi informado email ou CPF
@@ -323,9 +322,6 @@ class UserController {
 
         tipoUsuario = "agente";
       }
-
-      console.log("USER:", verificaUser);
-      console.log("TIPO USUÁRIO:", tipoUsuario);
 
       // Usuário não encontrado
       if (!verificaUser) {
