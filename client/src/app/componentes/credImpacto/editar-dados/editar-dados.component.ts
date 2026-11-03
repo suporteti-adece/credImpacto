@@ -82,7 +82,7 @@ export class EditarDadosComponent implements OnInit {
       complemento: [''],
 
       iniciativa_impacto: [''],
-      cadastro_cadimpacto: [''],
+      cadastro_cadimpacto: [{ value: '', disabled: true }],
       // status_atual: [''],
       area_atuacao: [''],
       resumo_negocio: ['', [Validators.maxLength(1500)]],
@@ -134,6 +134,7 @@ export class EditarDadosComponent implements OnInit {
             this.cadastroForm.get('tipo_proponente')?.disable();
             this.cadastroForm.get('cidade')?.disable();
             this.loading = false;
+            console.log('empresa', this.empresa);
           },
           error: (error) => {
             console.error('Erro ao carregar dados:', error);
@@ -188,6 +189,7 @@ export class EditarDadosComponent implements OnInit {
     this.editando = true;
     this.cadastroForm.get('tipo_proponente')?.enable();
     this.cadastroForm.get('cidade')?.enable();
+    this.cadastroForm.get('cadastro_cadimpacto')?.enable();
     this.mensagem = '';
     this.erro = '';
   }
@@ -201,6 +203,7 @@ export class EditarDadosComponent implements OnInit {
     this.preencherFormulario();
     this.cadastroForm.get('tipo_proponente')?.disable();
     this.cadastroForm.get('cidade')?.disable();
+    this.cadastroForm.get('cadastro_cadimpacto')?.disable();
     this.mensagem = '';
     this.erro = '';
   }
@@ -320,6 +323,7 @@ export class EditarDadosComponent implements OnInit {
       numero: this.cadastroForm.value.numero,
       complemento: this.cadastroForm.value.complemento,
       iniciativa_impacto: this.cadastroForm.value.iniciativa_impacto,
+      cadastro_cadimpacto: this.cadastroForm.value.cadastro_cadimpacto,
       area_atuacao: this.cadastroForm.value.area_atuacao,
       resumo_negocio: this.cadastroForm.value.resumo_negocio,
     };
@@ -332,6 +336,7 @@ export class EditarDadosComponent implements OnInit {
           this.mensagem = 'Dados atualizados com sucesso!';
           this.editando = false;
           this.salvando = false;
+          this.cadastroForm.get('cadastro_cadimpacto')?.disable();
 
           // Atualiza os dados exibidos
           this.buscarEmpresa(Number(this.empresa.id));

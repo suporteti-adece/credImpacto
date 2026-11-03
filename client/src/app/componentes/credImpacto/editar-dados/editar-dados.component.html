@@ -239,7 +239,7 @@
 
             <!-- Iniciativa -->
 
-            <div class="form-field">
+            <!-- <div class="form-field">
               <label>
                 Em qual eixo sua iniciativa gera impacto
               </label>
@@ -275,7 +275,7 @@
                   Tecnologia social
                 </button>
               </div>
-            </div>
+            </div> -->
 
 
             <!-- CADIMPACTO -->
@@ -287,17 +287,17 @@
 
               <div class="radio-group">
                 <label>
-                  <input type="radio" [checked]="empresa.cadastro_cadimpacto === 'PROCESSO'" disabled>
+                  <input type="radio" formControlName="cadastro_cadimpacto" value="SIM">
                   Sim
                 </label>
 
                 <label>
-                  <input type="radio" disabled>
+                  <input type="radio" formControlName="cadastro_cadimpacto" value="NAO">
                   Não
                 </label>
 
                 <label>
-                  <input type="radio" [checked]="empresa.cadastro_cadimpacto === 'PROCESSO'" disabled>
+                  <input type="radio" formControlName="cadastro_cadimpacto" value="PROCESSO">
                   Em processo
                 </label>
               </div>
@@ -306,7 +306,7 @@
 
             <!-- Situação / Área -->
 
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-md-6">
                 <div class="form-field">
                   <label>Situação Atual</label>
@@ -323,7 +323,7 @@
                   <input type="text" class="form-control" formControlName="area_atuacao" [readonly]="!editando">
                 </div>
               </div>
-            </div>
+            </div> -->
 
             <!-- Resumo -->
 
