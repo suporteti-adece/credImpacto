@@ -48,7 +48,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'questionario',
+        path: 'credimpacto/questionario',
         loadChildren: () =>
           import('./componentes/questionario/questionario.module').then(
             (m) => m.QuestionarioModule,
