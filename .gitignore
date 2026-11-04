@@ -30,6 +30,8 @@ client/dist/*
 # ============================================================
 server/node_modules/*
 server/src/uploads/*
+server/uploads/*
+!server/uploads/.gitkeep
 
 # ============================================================
 # Dados da Receita Federal

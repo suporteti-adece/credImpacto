@@ -72,6 +72,9 @@ services:
     ports:
       - "2526:3000"
 
+    volumes:
+      - ./server/uploads:/app/src/uploads
+
     depends_on:
       postgres:
         condition: service_healthy
