@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:2526/',
+  production: true,
+  apiUrl: 'https://api-impactaterritorios.adece.ce.gov.br/',
 };

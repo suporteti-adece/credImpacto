@@ -15,8 +15,8 @@ var corsOptions = {
   origin: [
     'http://localhost:5262', 
     'http://localhost:2710', 
-    'http://credimpacto.adece.ce.gov.br', 
-    'https://credimpacto.adece.ce.gov.br'
+    'https://impactaterritorios.adece.ce.gov.br',
+    'http://impactaterritorios.adece.ce.gov.br',
   ],
   credentials: true,
   methods: ['GET', 'PUT', 'POST','PATCH', 'DELETE'],
