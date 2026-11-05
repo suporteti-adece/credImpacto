@@ -293,7 +293,5 @@ export class CadastroAdminComponent implements OnInit {
   private resetFormulario(): void {
     this.cadastro = new Agente();
     this.cadastroForm.reset();
-
-    this.router.navigate(['/login']);
   }
 }
