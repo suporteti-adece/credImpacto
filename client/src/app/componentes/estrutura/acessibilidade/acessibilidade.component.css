@@ -1,4 +1,3 @@
-
 /* Container principal */
 .acessibilidade-container {
   position: fixed;
@@ -95,6 +94,48 @@
 .acessibilidade-recolhida:hover {
   background-color: #1d593f;
   transform: translateY(-2px);
+}
+
+/* Botão com funcionalidade ativada */
+.barra-acessibilidade button.botao-ativo {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #c7ffdf;
+  box-shadow: inset 0 -2px 0 #c7ffdf;
+}
+
+/* Destaque no hover */
+.barra-acessibilidade button.botao-ativo:hover {
+  background-color: rgba(255, 255, 255, 0.32);
+}
+
+/* Botões indisponíveis */
+.barra-acessibilidade button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Indicador de configurações ativas */
+.acessibilidade-recolhida {
+  position: relative;
+}
+
+.indicador-configuracao {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+
+  width: 9px;
+  height: 9px;
+
+  background-color: #c7ffdf;
+  border: 2px solid #286f51;
+  border-radius: 50%;
+}
+
+/* Evita que estilos globais alterem a barra */
+.barra-acessibilidade,
+.acessibilidade-recolhida {
+  color: #ffffff;
 }
 
 /* Responsividade */

@@ -84,26 +84,31 @@ export class AcessibilidadeComponent implements OnInit, OnDestroy {
     }
 
     const conteudo = document.querySelector('main');
-
-    if (!conteudo) {
-      return;
-    }
-
-    const texto = conteudo.textContent?.trim() ?? '';
+    const texto = conteudo?.textContent?.trim() ?? '';
 
     if (!texto) {
+      alert('Nenhum conteúdo disponível para leitura.');
       return;
     }
 
     const fala = new SpeechSynthesisUtterance(texto);
+
     fala.lang = 'pt-BR';
     fala.rate = 1;
 
-    fala.onend = () => (this.leituraAtiva = false);
-    fala.onerror = () => (this.leituraAtiva = false);
+    fala.onstart = () => {
+      this.leituraAtiva = true;
+    };
+
+    fala.onend = () => {
+      this.leituraAtiva = false;
+    };
+
+    fala.onerror = () => {
+      this.leituraAtiva = false;
+    };
 
     window.speechSynthesis.cancel();
-    this.leituraAtiva = true;
     window.speechSynthesis.speak(fala);
   }
 

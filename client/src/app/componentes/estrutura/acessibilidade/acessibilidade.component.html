@@ -1,57 +1,56 @@
 
 <div class="acessibilidade-container">
 
-  <!-- BARRA EXPANDIDA -->
-  <div
-    *ngIf="barraExpandida"
-    class="barra-acessibilidade"
-    role="group"
-    aria-label="Ferramentas de acessibilidade">
+  <div *ngIf="barraExpandida"
+       class="barra-acessibilidade"
+       role="group"
+       aria-label="Ferramentas de acessibilidade">
 
-    <button
-      type="button"
-      (click)="diminuirFonte()"
-      title="Diminuir fonte"
-      aria-label="Diminuir fonte">
+    <button type="button"
+            (click)="diminuirFonte()"
+            [disabled]="tamanhoFonte <= 80"
+            aria-label="Diminuir fonte"
+            title="Diminuir fonte">
       A-
     </button>
 
-    <button
-      type="button"
-      (click)="aumentarFonte()"
-      title="Aumentar fonte"
-      aria-label="Aumentar fonte">
+    <button type="button"
+            (click)="aumentarFonte()"
+            [disabled]="tamanhoFonte >= 200"
+            [class.botao-ativo]="tamanhoFonte !== 100"
+            aria-label="Aumentar fonte"
+            title="Aumentar fonte">
       A+
     </button>
 
-    <button
-      type="button"
-      (click)="restaurar()"
-      title="Restaurar configurações"
-      aria-label="Restaurar configurações">
+    <button type="button"
+            (click)="restaurar()"
+            aria-label="Restaurar configurações"
+            title="Restaurar configurações">
       <i class="fa-solid fa-rotate-left"
          aria-hidden="true"></i>
     </button>
 
-    <button
-      type="button"
-      (click)="alternarContraste()"
-      [attr.aria-pressed]="altoContraste"
-      title="Alto contraste"
-      aria-label="Alternar alto contraste">
+    <button type="button"
+            (click)="alternarContraste()"
+            [class.botao-ativo]="altoContraste"
+            [attr.aria-pressed]="altoContraste"
+            aria-label="Alternar alto contraste"
+            title="Alto contraste">
       <i class="fa-solid fa-circle-half-stroke"
          aria-hidden="true"></i>
     </button>
 
-    <span class="separador"
-          aria-hidden="true"></span>
+    <span class="separador" aria-hidden="true"></span>
 
-    <button
-      type="button"
-      (click)="alternarLeitura()"
-      [attr.aria-pressed]="leituraAtiva"
-      title="Leitura por voz"
-      aria-label="Ativar ou desativar leitura por voz">
+    <button type="button"
+            (click)="alternarLeitura()"
+            [class.botao-ativo]="leituraAtiva"
+            [attr.aria-pressed]="leituraAtiva"
+            [attr.aria-label]="leituraAtiva
+              ? 'Parar leitura por voz'
+              : 'Iniciar leitura por voz'"
+            title="Leitura por voz">
       <i class="fa-solid"
          [ngClass]="leituraAtiva
            ? 'fa-volume-high'
@@ -59,31 +58,35 @@
          aria-hidden="true"></i>
     </button>
 
-    <!-- RECOLHER -->
-    <button
-      type="button"
-      (click)="alternarBarra()"
-      title="Recolher barra"
-      aria-label="Recolher barra de acessibilidade">
+    <button type="button"
+            (click)="alternarBarra()"
+            aria-label="Recolher barra de acessibilidade"
+            title="Recolher">
       <i class="fa-solid fa-chevron-down"
          aria-hidden="true"></i>
     </button>
 
   </div>
 
-  <!-- BARRA RECOLHIDA -->
-  <button
-    *ngIf="!barraExpandida"
-    type="button"
-    class="acessibilidade-recolhida"
-    (click)="alternarBarra()"
-    title="Abrir ferramentas de acessibilidade"
-    aria-label="Abrir ferramentas de acessibilidade"
-    aria-expanded="false">
+  <button *ngIf="!barraExpandida"
+          type="button"
+          class="acessibilidade-recolhida"
+          (click)="alternarBarra()"
+          aria-label="Abrir ferramentas de acessibilidade"
+          title="Acessibilidade">
 
     <i class="fa-solid fa-universal-access"
        aria-hidden="true"></i>
 
+    <span *ngIf="altoContraste || leituraAtiva || tamanhoFonte !== 100"
+          class="indicador-configuracao"
+          aria-hidden="true"></span>
   </button>
+
+  <span class="visually-hidden" role="status" aria-live="polite">
+    Tamanho da fonte: {{ tamanhoFonte }}%.
+    Alto contraste {{ altoContraste ? 'ativado' : 'desativado' }}.
+    Leitura por voz {{ leituraAtiva ? 'ativa' : 'inativa' }}.
+  </span>
 
 </div>
