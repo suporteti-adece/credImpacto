@@ -138,6 +138,148 @@
   color: #ffffff;
 }
 
+/* Painel de leitura por voz */
+.painel-leitura {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 290px;
+  max-width: calc(100vw - 24px);
+  padding: 16px;
+
+  background-color: #ffffff;
+  color: #24352d;
+
+  border: 1px solid #dce5df;
+  border-radius: 14px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+
+  font-size: 0.875rem;
+}
+
+.painel-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+
+  font-weight: 700;
+  color: #286f51;
+}
+
+.modos-leitura {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+}
+
+.modos-leitura legend {
+  width: 100%;
+  margin-bottom: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.modos-leitura label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.painel-leitura > label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.painel-leitura select {
+  margin-bottom: 14px;
+  font-size: 0.875rem;
+}
+
+.acoes-leitura {
+  display: flex;
+  gap: 8px;
+}
+
+.acoes-leitura button {
+  flex: 1;
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-iniciar {
+  background: #286f51;
+  color: #ffffff;
+}
+
+.btn-iniciar:hover {
+  background: #1d593f;
+}
+
+.btn-parar {
+  background: #ffffff;
+  color: #286f51;
+  border-color: #286f51 !important;
+}
+
+.acoes-leitura button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.acoes-leitura button:focus-visible,
+.painel-leitura select:focus-visible,
+.painel-leitura input:focus-visible {
+  outline: 2px solid #286f51;
+  outline-offset: 3px;
+}
+
+.status-leitura {
+  margin-top: 12px;
+  font-size: 0.75rem;
+  color: #52645a;
+}
+
+/* Indicação de leitura em andamento */
+.barra-acessibilidade button.botao-ativo {
+  background-color: rgba(255, 255, 255, 0.22);
+  color: #c7ffdf;
+}
+
+/* Botão Parar durante a leitura */
+.btn-parar:not(:disabled) {
+  background-color: #b42318;
+  color: #ffffff;
+  border-color: #b42318 !important;
+}
+
+.btn-parar:not(:disabled):hover {
+  background-color: #912018;
+}
+
+/* Botões desabilitados */
+.acoes-leitura button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 576px) {
+  .painel-leitura {
+    width: 280px;
+    padding: 12px;
+  }
+}
+
 /* Responsividade */
 @media (max-width: 576px) {
   .acessibilidade-container {
