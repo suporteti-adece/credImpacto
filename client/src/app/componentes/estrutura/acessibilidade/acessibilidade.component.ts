@@ -77,24 +77,52 @@ export class AcessibilidadeComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // Se estiver lendo, interrompe a leitura
     if (this.leituraAtiva) {
       window.speechSynthesis.cancel();
       this.leituraAtiva = false;
       return;
     }
 
-    const conteudo = document.querySelector('main');
-    const texto = conteudo?.textContent?.trim() ?? '';
+    // Procura o conteúdo principal do Angular
+    const conteudo =
+      document.querySelector('main') ||
+      document.querySelector('.main-content') ||
+      document.querySelector('.content-wrapper') ||
+      document.querySelector('app-root');
 
-    if (!texto) {
-      alert('Nenhum conteúdo disponível para leitura.');
+    if (!conteudo) {
+      alert('Conteúdo do sistema não encontrado.');
       return;
     }
 
+    // Cria uma cópia para não modificar o HTML original
+    const copia = conteudo.cloneNode(true) as HTMLElement;
+
+    // Remove elementos que não devem ser lidos
+    copia
+      .querySelectorAll(
+        'script, style, nav, footer, button, ' +
+          '.barra-acessibilidade, .acessibilidade-container, ' +
+          '[aria-hidden="true"]',
+      )
+      .forEach((elemento) => elemento.remove());
+
+    // Obtém somente o texto
+    const texto = copia.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+
+    if (!texto) {
+      alert('Nenhum texto disponível para leitura.');
+      return;
+    }
+
+    // Configura a leitura em português brasileiro
     const fala = new SpeechSynthesisUtterance(texto);
 
     fala.lang = 'pt-BR';
     fala.rate = 1;
+    fala.pitch = 1;
+    fala.volume = 1;
 
     fala.onstart = () => {
       this.leituraAtiva = true;
@@ -108,6 +136,7 @@ export class AcessibilidadeComponent implements OnInit, OnDestroy {
       this.leituraAtiva = false;
     };
 
+    // Inicia a leitura
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(fala);
   }
