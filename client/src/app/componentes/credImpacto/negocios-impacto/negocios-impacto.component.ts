@@ -10,12 +10,12 @@ export class NegociosImpactoComponent {
   exemplos = [
     {
       titulo: 'Reciclagem e economia circular',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/Reciclagem-e-economia-circular.png',
     },
 
     {
       titulo: 'Agricultura sustentável',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/AGRICULTURA SUSTENTÁVEL.jpeg',
     },
 
     {
@@ -40,7 +40,7 @@ export class NegociosImpactoComponent {
 
     {
       titulo: 'Segurança alimentar',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/SEGURANÇA ALIMENTAR.jpeg',
     },
 
     {
