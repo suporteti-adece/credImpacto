@@ -30,7 +30,7 @@ export class NegociosImpactoComponent {
 
     {
       titulo: 'Saúde preventiva',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/Saúde preventiva.jpeg',
     },
 
     {
