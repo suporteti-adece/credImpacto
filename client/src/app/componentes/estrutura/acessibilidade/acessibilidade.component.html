@@ -1,0 +1,89 @@
+
+<div class="acessibilidade-container">
+
+  <!-- BARRA EXPANDIDA -->
+  <div
+    *ngIf="barraExpandida"
+    class="barra-acessibilidade"
+    role="group"
+    aria-label="Ferramentas de acessibilidade">
+
+    <button
+      type="button"
+      (click)="diminuirFonte()"
+      title="Diminuir fonte"
+      aria-label="Diminuir fonte">
+      A-
+    </button>
+
+    <button
+      type="button"
+      (click)="aumentarFonte()"
+      title="Aumentar fonte"
+      aria-label="Aumentar fonte">
+      A+
+    </button>
+
+    <button
+      type="button"
+      (click)="restaurar()"
+      title="Restaurar configurações"
+      aria-label="Restaurar configurações">
+      <i class="fa-solid fa-rotate-left"
+         aria-hidden="true"></i>
+    </button>
+
+    <button
+      type="button"
+      (click)="alternarContraste()"
+      [attr.aria-pressed]="altoContraste"
+      title="Alto contraste"
+      aria-label="Alternar alto contraste">
+      <i class="fa-solid fa-circle-half-stroke"
+         aria-hidden="true"></i>
+    </button>
+
+    <span class="separador"
+          aria-hidden="true"></span>
+
+    <button
+      type="button"
+      (click)="alternarLeitura()"
+      [attr.aria-pressed]="leituraAtiva"
+      title="Leitura por voz"
+      aria-label="Ativar ou desativar leitura por voz">
+      <i class="fa-solid"
+         [ngClass]="leituraAtiva
+           ? 'fa-volume-high'
+           : 'fa-volume-xmark'"
+         aria-hidden="true"></i>
+    </button>
+
+    <!-- RECOLHER -->
+    <button
+      type="button"
+      (click)="alternarBarra()"
+      title="Recolher barra"
+      aria-label="Recolher barra de acessibilidade">
+      <i class="fa-solid fa-chevron-down"
+         aria-hidden="true"></i>
+    </button>
+
+  </div>
+
+  <!-- BARRA RECOLHIDA -->
+  <button
+    *ngIf="!barraExpandida"
+    type="button"
+    class="acessibilidade-recolhida"
+    (click)="alternarBarra()"
+    title="Abrir ferramentas de acessibilidade"
+    aria-label="Abrir ferramentas de acessibilidade"
+    aria-expanded="false">
+
+    <i class="fa-solid fa-universal-access"
+       aria-hidden="true"></i>
+
+  </button>
+
+</div>

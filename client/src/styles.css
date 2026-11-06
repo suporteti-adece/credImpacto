@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+
+body.alto-contraste {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+
+  main,
+  header,
+  footer,
+  section,
+  article,
+  nav,
+  .card,
+  .modal-content {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+  }
+
+  a {
+    color: #ffff00 !important;
+  }
+
+  input,
+  select,
+  textarea {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: 1px solid #ffffff !important;
+  }
+}

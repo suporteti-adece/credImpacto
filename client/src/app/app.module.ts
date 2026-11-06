@@ -22,6 +22,7 @@ import { MenuLateralComponent } from './layouts/menu-lateral/menu-lateral.compon
 import { authInterceptor } from './services/interceptors/auth.interceptor';
 import { DiretivasModule } from './directives/diretivas.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AcessibilidadeComponent } from './componentes/estrutura/acessibilidade/acessibilidade.component';
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -38,6 +39,7 @@ registerLocaleData(localePt, 'pt-BR');
     HeaderAdminComponent,
     SidebarComponent,
     MenuLateralComponent,
+    AcessibilidadeComponent,
   ],
   imports: [
     BrowserModule,

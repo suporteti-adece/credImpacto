@@ -1,0 +1,129 @@
+
+/* Container principal */
+.acessibilidade-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+
+/* Barra expandida */
+.barra-acessibilidade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+
+  padding: 6px 10px;
+  background-color: #286f51;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+/* Botões */
+.barra-acessibilidade button {
+  min-width: 36px;
+  min-height: 36px;
+  padding: 6px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.2s ease;
+}
+
+/* Hover */
+.barra-acessibilidade button:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Foco acessível */
+.barra-acessibilidade button:focus-visible,
+.acessibilidade-recolhida:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* Separador */
+.separador {
+  height: 22px;
+  width: 1px;
+  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Botão recolhido */
+.acessibilidade-recolhida {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #286f51;
+  color: #ffffff;
+
+  border: none;
+  border-radius: 14px;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.acessibilidade-recolhida:hover {
+  background-color: #1d593f;
+  transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+  .acessibilidade-container {
+    bottom: 12px;
+  }
+
+  .barra-acessibilidade {
+    padding: 5px 6px;
+    gap: 0;
+  }
+
+  .barra-acessibilidade button {
+    min-width: 36px;
+    min-height: 44px;
+    padding: 5px;
+  }
+
+  .acessibilidade-recolhida {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Respeita preferência por menos animações */
+@media (prefers-reduced-motion: reduce) {
+  .barra-acessibilidade button,
+  .acessibilidade-recolhida {
+    transition: none;
+  }
+}
