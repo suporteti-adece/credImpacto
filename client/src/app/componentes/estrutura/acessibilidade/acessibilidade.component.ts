@@ -16,8 +16,11 @@ import {
   templateUrl: './acessibilidade.component.html',
   styleUrl: './acessibilidade.component.css',
 })
-export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('containerAcessibilidade') containerAcessibilidade!: ElementRef<HTMLElement>;
+export class AcessibilidadeComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
+  @ViewChild('containerAcessibilidade')
+  containerAcessibilidade!: ElementRef<HTMLElement>;
   @ViewChild('painelLeitura') painelLeitura?: ElementRef<HTMLElement>;
 
   tamanhoFonte = 100;
@@ -46,15 +49,25 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
   private falaAtual: SpeechSynthesisUtterance | null = null;
   private frameLayout: number | null = null;
 
-  constructor(private renderer: Renderer2, private zone: NgZone) {}
+  constructor(
+    private renderer: Renderer2,
+    private zone: NgZone,
+  ) {}
 
   ngOnInit(): void {
     const fonte = Number(localStorage.getItem('acessibilidade_fonte') ?? 100);
-    this.tamanhoFonte = Number.isFinite(fonte) && fonte >= 80 && fonte <= 200 ? fonte : 100;
-    this.altoContraste = localStorage.getItem('acessibilidade_contraste') === 'true';
-    this.barraExpandida = localStorage.getItem('acessibilidade_barra') === 'true';
-    const velocidade = Number(localStorage.getItem('acessibilidade_velocidade') ?? 1);
-    this.velocidadeLeitura = [0.75, 1, 1.25, 1.5].includes(velocidade) ? velocidade : 1;
+    this.tamanhoFonte =
+      Number.isFinite(fonte) && fonte >= 80 && fonte <= 200 ? fonte : 100;
+    this.altoContraste =
+      localStorage.getItem('acessibilidade_contraste') === 'true';
+    this.barraExpandida =
+      localStorage.getItem('acessibilidade_barra') === 'true';
+    const velocidade = Number(
+      localStorage.getItem('acessibilidade_velocidade') ?? 1,
+    );
+    this.velocidadeLeitura = [0.75, 1, 1.25, 1.5].includes(velocidade)
+      ? velocidade
+      : 1;
     this.recuperarPosicao();
     this.aplicarFonte();
     this.aplicarContraste();
@@ -70,22 +83,39 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   private recuperarPosicao(): void {
-    this.posicaoPadrao();
     const salva = localStorage.getItem('acessibilidade_posicao');
-    if (!salva) return;
+
+    // Posição inicial: lado direito, próximo à parte inferior
+    const posicaoPadrao = () => {
+      this.posicaoX = Math.max(0, window.innerWidth - 68);
+      this.posicaoY = Math.max(0, window.innerHeight - 100);
+    };
+
+    if (!salva) {
+      posicaoPadrao();
+      return;
+    }
+
     try {
       const posicao = JSON.parse(salva);
-      if (Number.isFinite(posicao?.x) && Number.isFinite(posicao?.y)) {
+
+      if (Number.isFinite(posicao.x) && Number.isFinite(posicao.y)) {
         this.posicaoX = posicao.x;
         this.posicaoY = posicao.y;
+      } else {
+        posicaoPadrao();
       }
     } catch {
       localStorage.removeItem('acessibilidade_posicao');
+      posicaoPadrao();
     }
   }
 
   private salvarPosicao(): void {
-    localStorage.setItem('acessibilidade_posicao', JSON.stringify({ x: this.posicaoX, y: this.posicaoY }));
+    localStorage.setItem(
+      'acessibilidade_posicao',
+      JSON.stringify({ x: this.posicaoX, y: this.posicaoY }),
+    );
   }
 
   restaurarPosicao(): void {
@@ -97,8 +127,20 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
   private limitarPosicao(): void {
     const elemento = this.containerAcessibilidade?.nativeElement;
     if (!elemento) return;
-    this.posicaoX = Math.max(0, Math.min(this.posicaoX, Math.max(0, window.innerWidth - elemento.offsetWidth)));
-    this.posicaoY = Math.max(0, Math.min(this.posicaoY, Math.max(0, window.innerHeight - elemento.offsetHeight)));
+    this.posicaoX = Math.max(
+      0,
+      Math.min(
+        this.posicaoX,
+        Math.max(0, window.innerWidth - elemento.offsetWidth),
+      ),
+    );
+    this.posicaoY = Math.max(
+      0,
+      Math.min(
+        this.posicaoY,
+        Math.max(0, window.innerHeight - elemento.offsetHeight),
+      ),
+    );
   }
 
   private agendarAjusteLayout(): void {
@@ -121,12 +163,21 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
     const largura = painel.offsetWidth;
     const altura = painel.offsetHeight;
     const margem = 12;
-    this.painelX = Math.max(margem, Math.min(rect.left, window.innerWidth - largura - margem));
+    this.painelX = Math.max(
+      margem,
+      Math.min(rect.left, window.innerWidth - largura - margem),
+    );
     const acima = rect.top - altura - margem;
     const abaixo = rect.bottom + margem;
-    this.painelY = acima >= margem ? acima :
-      abaixo + altura <= window.innerHeight - margem ? abaixo :
-      Math.max(margem, Math.min(abaixo, window.innerHeight - altura - margem));
+    this.painelY =
+      acima >= margem
+        ? acima
+        : abaixo + altura <= window.innerHeight - margem
+          ? abaixo
+          : Math.max(
+              margem,
+              Math.min(abaixo, window.innerHeight - altura - margem),
+            );
   }
 
   iniciarArraste(event: PointerEvent): void {
@@ -213,7 +264,11 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   private aplicarFonte(): void {
-    this.renderer.setStyle(document.documentElement, 'font-size', `${this.tamanhoFonte}%`);
+    this.renderer.setStyle(
+      document.documentElement,
+      'font-size',
+      `${this.tamanhoFonte}%`,
+    );
     localStorage.setItem('acessibilidade_fonte', String(this.tamanhoFonte));
   }
 
@@ -223,9 +278,13 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   private aplicarContraste(): void {
-    if (this.altoContraste) this.renderer.addClass(document.body, 'alto-contraste');
+    if (this.altoContraste)
+      this.renderer.addClass(document.body, 'alto-contraste');
     else this.renderer.removeClass(document.body, 'alto-contraste');
-    localStorage.setItem('acessibilidade_contraste', String(this.altoContraste));
+    localStorage.setItem(
+      'acessibilidade_contraste',
+      String(this.altoContraste),
+    );
   }
 
   alterarVelocidade(valor: number | string): void {
@@ -244,18 +303,24 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
     if (this.modoLeitura === 'selecao') {
       texto = window.getSelection()?.toString().trim() ?? '';
       const elemento = document.activeElement;
-      if (!texto && (elemento instanceof HTMLTextAreaElement ||
-        (elemento instanceof HTMLInputElement && ['text', 'search', 'url', 'tel'].includes(elemento.type)))) {
+      if (
+        !texto &&
+        (elemento instanceof HTMLTextAreaElement ||
+          (elemento instanceof HTMLInputElement &&
+            ['text', 'search', 'url', 'tel'].includes(elemento.type)))
+      ) {
         const inicio = elemento.selectionStart;
         const fim = elemento.selectionEnd;
-        if (inicio !== null && fim !== null && fim > inicio) texto = elemento.value.substring(inicio, fim).trim();
+        if (inicio !== null && fim !== null && fim > inicio)
+          texto = elemento.value.substring(inicio, fim).trim();
       }
       if (!texto) {
         alert('Selecione um texto antes de iniciar a leitura.');
         return;
       }
     } else {
-      const conteudo = document.querySelector('main') ||
+      const conteudo =
+        document.querySelector('main') ||
         document.querySelector('.main-content') ||
         document.querySelector('.content-wrapper') ||
         document.querySelector('app-root');
@@ -264,9 +329,12 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
         return;
       }
       const copia = conteudo.cloneNode(true) as HTMLElement;
-      copia.querySelectorAll('script, style, nav, footer, button, .barra-acessibilidade, ' +
-        '.acessibilidade-container, [aria-hidden="true"], [hidden], input, select, textarea')
-        .forEach(elemento => elemento.remove());
+      copia
+        .querySelectorAll(
+          'script, style, nav, footer, button, .barra-acessibilidade, ' +
+            '.acessibilidade-container, [aria-hidden="true"], [hidden], input, select, textarea',
+        )
+        .forEach((elemento) => elemento.remove());
       texto = copia.textContent?.replace(/\s+/g, ' ').trim() ?? '';
       if (!texto) {
         alert('Nenhum conteúdo disponível para leitura.');
@@ -281,11 +349,12 @@ export class AcessibilidadeComponent implements OnInit, AfterViewInit, OnDestroy
     fala.pitch = 1;
     fala.volume = 1;
     this.leituraAtiva = true;
-    const finalizar = () => this.zone.run(() => {
-      if (id !== this.identificadorLeitura) return;
-      this.leituraAtiva = false;
-      this.falaAtual = null;
-    });
+    const finalizar = () =>
+      this.zone.run(() => {
+        if (id !== this.identificadorLeitura) return;
+        this.leituraAtiva = false;
+        this.falaAtual = null;
+      });
     fala.onend = finalizar;
     fala.onerror = finalizar;
     this.falaAtual = fala;
