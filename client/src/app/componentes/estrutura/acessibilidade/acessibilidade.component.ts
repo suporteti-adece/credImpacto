@@ -78,8 +78,9 @@ export class AcessibilidadeComponent
   }
 
   private posicaoPadrao(): void {
-    this.posicaoX = 20;
-    this.posicaoY = Math.max(12, window.innerHeight - 170);
+    // Canto inferior direito, abaixo do VLibras
+    this.posicaoX = Math.max(0, window.innerWidth - 68);
+    this.posicaoY = Math.max(0, window.innerHeight - 100);
   }
 
   private recuperarPosicao(): void {
