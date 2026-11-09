@@ -1,111 +1,45 @@
-<div class="acessibilidade-container">
+<div #containerAcessibilidade class="acessibilidade-container"
+     [class.arrastando]="arrastando"
+     [style.left.px]="posicaoX" [style.top.px]="posicaoY">
 
-  <div *ngIf="barraExpandida" class="barra-acessibilidade" role="group" aria-label="Ferramentas de acessibilidade">
-
-    <button type="button" (click)="diminuirFonte()" [disabled]="tamanhoFonte <= 80" aria-label="Diminuir fonte"
-      title="Diminuir fonte">
-      A-
-    </button>
-
+  <div *ngIf="barraExpandida" class="barra-acessibilidade" role="group"
+       aria-label="Ferramentas de acessibilidade">
+    <button type="button" (click)="diminuirFonte()" [disabled]="tamanhoFonte <= 80"
+            [class.botao-ativo]="tamanhoFonte !== 100" aria-label="Diminuir fonte" title="Diminuir fonte">A-</button>
     <button type="button" (click)="aumentarFonte()" [disabled]="tamanhoFonte >= 200"
-      [class.botao-ativo]="tamanhoFonte !== 100" aria-label="Aumentar fonte" title="Aumentar fonte">
-      A+
-    </button>
-
-    <button type="button" (click)="restaurar()" aria-label="Restaurar configurações" title="Restaurar configurações">
-      <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
-    </button>
-
+            [class.botao-ativo]="tamanhoFonte !== 100" aria-label="Aumentar fonte" title="Aumentar fonte">A+</button>
+    <button type="button" (click)="restaurar()" aria-label="Restaurar configurações de acessibilidade"
+            title="Restaurar configurações"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></button>
     <button type="button" (click)="alternarContraste()" [class.botao-ativo]="altoContraste"
-      [attr.aria-pressed]="altoContraste" aria-label="Alternar alto contraste" title="Alto contraste">
+            [attr.aria-pressed]="altoContraste" aria-label="Alternar alto contraste" title="Alto contraste">
       <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
     </button>
-
     <span class="separador" aria-hidden="true"></span>
-
-
-    <!-- Botão para abrir configurações de voz -->
-    <button type="button" (click)="alternarPainelLeitura()" [class.botao-ativo]="leituraAtiva || painelLeituraAberto"
-      [attr.aria-expanded]="painelLeituraAberto" aria-controls="painel-leitura"
-      aria-label="Configurações de leitura por voz" title="Leitura por voz">
-
+    <button type="button" (click)="alternarPainelLeitura()"
+            [class.botao-ativo]="leituraAtiva || painelLeituraAberto"
+            [attr.aria-expanded]="painelLeituraAberto" aria-controls="painel-leitura"
+            aria-label="Configurações de leitura por voz" title="Leitura por voz">
       <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
     </button>
-
-
-    <button type="button" (click)="alternarBarra()" aria-label="Recolher barra de acessibilidade" title="Recolher">
-      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    <button type="button" (click)="restaurarPosicao()"
+            aria-label="Restaurar posição do ícone" title="Restaurar posição">
+      <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
     </button>
-
+    <button type="button" (click)="alternarBarra()" aria-label="Recolher barra de acessibilidade"
+            title="Recolher"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i></button>
   </div>
 
-
-  <div *ngIf="barraExpandida && painelLeituraAberto" id="painel-leitura" class="painel-leitura" role="group"
-    aria-label="Configurações de leitura por voz">
-
-    <div class="painel-titulo">
-      <i class="fa-solid fa-volume-high" aria-hidden="true"></i>
-      Leitura por voz
-    </div>
-
-    <fieldset class="modos-leitura">
-      <legend>O que deseja ler?</legend>
-
-      <label>
-        <input type="radio" name="modoLeitura" value="pagina" [(ngModel)]="modoLeitura">
-        Página
-      </label>
-
-      <label>
-        <input type="radio" name="modoLeitura" value="selecao" [(ngModel)]="modoLeitura">
-        Seleção
-      </label>
-    </fieldset>
-
-    <label for="velocidade-leitura">
-      Velocidade da leitura
-    </label>
-
-    <select id="velocidade-leitura" class="form-select form-select-sm" [ngModel]="velocidadeLeitura"
-      (ngModelChange)="alterarVelocidade($event)">
-
-      <option [ngValue]="0.75">0,75× - Lenta</option>
-      <option [ngValue]="1">1× - Normal</option>
-      <option [ngValue]="1.25">1,25× - Rápida</option>
-      <option [ngValue]="1.5">1,5× - Muito rápida</option>
-    </select>
-
-
-    <div class="acoes-leitura">
-
-      <button type="button" class="btn-iniciar" (click)="iniciarLeitura()" [disabled]="leituraAtiva">
-
-        <i class="fa-solid fa-play" aria-hidden="true"></i>
-        Iniciar
-      </button>
-
-      <button type="button" class="btn-parar" (click)="pararLeitura()" [disabled]="!leituraAtiva">
-
-        <i class="fa-solid fa-stop" aria-hidden="true"></i>
-        Parar
-      </button>
-
-    </div>
-
-
-    <div class="status-leitura" role="status" aria-live="polite">
-      {{ leituraAtiva ? 'Leitura em andamento' : 'Leitura parada' }}
-    </div>
-  </div>
-
-
-  <button *ngIf="!barraExpandida" type="button" class="acessibilidade-recolhida" (click)="alternarBarra()"
-    aria-label="Abrir ferramentas de acessibilidade" title="Acessibilidade">
-
+  <button *ngIf="!barraExpandida" type="button" class="acessibilidade-recolhida"
+          (pointerdown)="iniciarArraste($event)"
+          (pointermove)="moverArraste($event)"
+          (pointerup)="finalizarArraste($event)"
+          (pointercancel)="finalizarArraste($event)"
+          (click)="clicarBotaoFlutuante()"
+          aria-label="Abrir ferramentas de acessibilidade. Arraste para mover"
+          title="Clique para abrir ou arraste para mover">
     <i class="fa-solid fa-universal-access" aria-hidden="true"></i>
-
-    <span *ngIf="altoContraste || leituraAtiva || tamanhoFonte !== 100" class="indicador-configuracao"
-      aria-hidden="true"></span>
+    <span *ngIf="altoContraste || leituraAtiva || tamanhoFonte !== 100"
+          class="indicador-configuracao" aria-hidden="true"></span>
   </button>
 
   <span class="visually-hidden" role="status" aria-live="polite">
@@ -113,5 +47,36 @@
     Alto contraste {{ altoContraste ? 'ativado' : 'desativado' }}.
     Leitura por voz {{ leituraAtiva ? 'ativa' : 'inativa' }}.
   </span>
+</div>
 
+<!-- Fora do container móvel: posicionamento fixo relativo à janela -->
+<div *ngIf="barraExpandida && painelLeituraAberto" #painelLeitura
+     id="painel-leitura" class="painel-leitura"
+     [style.left.px]="painelX" [style.top.px]="painelY"
+     role="group" aria-label="Configurações de leitura por voz">
+  <div class="painel-titulo"><i class="fa-solid fa-volume-high" aria-hidden="true"></i> Leitura por voz</div>
+  <fieldset class="modos-leitura">
+    <legend>O que deseja ler?</legend>
+    <label><input type="radio" name="modoLeitura" value="pagina" [(ngModel)]="modoLeitura"> Página</label>
+    <label><input type="radio" name="modoLeitura" value="selecao" [(ngModel)]="modoLeitura"> Seleção</label>
+  </fieldset>
+  <label for="velocidade-leitura">Velocidade da leitura</label>
+  <select id="velocidade-leitura" class="form-select form-select-sm"
+          [ngModel]="velocidadeLeitura" (ngModelChange)="alterarVelocidade($event)">
+    <option [ngValue]="0.75">0,75× - Lenta</option>
+    <option [ngValue]="1">1× - Normal</option>
+    <option [ngValue]="1.25">1,25× - Rápida</option>
+    <option [ngValue]="1.5">1,5× - Muito rápida</option>
+  </select>
+  <div class="acoes-leitura">
+    <button type="button" class="btn-iniciar" (click)="iniciarLeitura()" [disabled]="leituraAtiva">
+      <i class="fa-solid fa-play" aria-hidden="true"></i> Iniciar
+    </button>
+    <button type="button" class="btn-parar" (click)="pararLeitura()" [disabled]="!leituraAtiva">
+      <i class="fa-solid fa-stop" aria-hidden="true"></i> Parar
+    </button>
+  </div>
+  <div class="status-leitura" role="status" aria-live="polite">
+    {{ leituraAtiva ? 'Leitura em andamento' : 'Leitura parada' }}
+  </div>
 </div>
