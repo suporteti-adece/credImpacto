@@ -88,6 +88,8 @@ services:
     build:
       context: ./client
       dockerfile: Dockerfile
+      args:
+        ANGULAR_CONFIGURATION: ${ANGULAR_CONFIGURATION:-production}
 
     container_name: credImpacto-frontend
     restart: unless-stopped

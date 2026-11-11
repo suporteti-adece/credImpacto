@@ -1,16 +1,16 @@
-# Observatório de Empresas do Ceará — ETL Receita Federal
+# Projeto CredImpacto
 
-Pipeline ETL para processamento dos **Dados Abertos do CNPJ da Receita Federal**, com foco na identificação e consolidação de empresas relacionadas ao **Estado do Ceará**.
+O **CredImpacto** é uma plataforma de apoio a negócios de impacto e ao acesso a crédito. O projeto reúne um portal web com informações do programa, autoavaliação de impacto e cadastro de proponentes, além de serviços de backend e dados que apoiam as consultas e análises.
 
-O projeto processa os arquivos disponibilizados pela Receita Federal, carrega os dados em PostgreSQL e mantém as informações organizadas por **competência**, permitindo armazenar diferentes fotografias mensais da base.
+O sistema é composto por uma aplicação web em Angular, uma API em Node.js e um banco de dados PostgreSQL. Também inclui um pipeline ETL em Python para processar os **Dados Abertos do CNPJ da Receita Federal**, com foco na identificação e consolidação de empresas relacionadas ao **Estado do Ceará**.
 
-O pipeline foi desenvolvido em **Python**, utilizando **PostgreSQL 17**, `psycopg` e Docker.
+O ETL carrega os dados em PostgreSQL e mantém as informações organizadas por **competência**, permitindo armazenar diferentes fotografias mensais da base. A API e o pipeline são executados com Docker; o ETL utiliza Python e `psycopg`, sobre PostgreSQL 17.
 
 ---
 
 ## Objetivo
 
-O projeto prepara uma base de dados estruturada para aplicações que necessitem consultar informações empresariais como:
+O CredImpacto oferece recursos para conhecer o programa, avaliar negócios de impacto e realizar o cadastro de proponentes. Sua camada de dados prepara informações empresariais que podem apoiar consultas e análises, incluindo:
 
 - CNPJ;
 - razão social;
@@ -29,13 +29,13 @@ O projeto prepara uma base de dados estruturada para aplicações que necessitem
 - opção pelo MEI;
 - estabelecimentos matriz e filial.
 
-A base resultante poderá ser utilizada posteriormente por APIs, dashboards, sistemas de consulta e ferramentas de análise.
+Essa base estruturada dá suporte a consultas de informações empresariais e pode ser utilizada por sistemas de análise e visualização.
 
 ---
 
 # API de consulta por serviço (CNAE principal)
 
-O projeto inclui uma API Node.js/Express em `api/`. Ela permite localizar empresas pelo código exato do CNAE principal ou por palavras presentes na descrição da atividade.
+O projeto inclui uma API Node.js/Express, localizada em `server/`. Ela permite localizar empresas pelo código exato do CNAE principal ou por palavras presentes na descrição da atividade.
 
 ## Iniciar com Docker
 
@@ -1481,6 +1481,17 @@ PYTHONPATH=src python src/run_etl.py --check
 
 # Executar
 PYTHONPATH=src python src/run_etl.py
+```
+
+## Subir o frontend com a configuração de teste
+
+Por padrão, o container do frontend é compilado com a configuração de produção. Para usar a configuração de desenvolvimento (`environment.development.ts`) em um ambiente de teste, execute na raiz do repositório:
+
+```bash
+ANGULAR_CONFIGURATION=development docker compose up --build frontend
+```
+
+Esse comando reconstrói e inicia o frontend usando a configuração de desenvolvimento. Para o ambiente de produção, não defina `ANGULAR_CONFIGURATION` (ou use `ANGULAR_CONFIGURATION=production`).
 
 ---
 

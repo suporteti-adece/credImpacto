@@ -10,9 +10,11 @@ RUN npm ci
 
 COPY . .
 
+ARG ANGULAR_CONFIGURATION=production
+
 # Localiza automaticamente a pasta que contém o index.html.
 # Funciona tanto com dist/frontend quanto com dist/frontend/browser.
-RUN npm run build -- --configuration production \
+RUN npm run build -- --configuration "${ANGULAR_CONFIGURATION}" \
     && mkdir -p /app/deploy \
     && BUILD_INDEX="$(find /app/dist -type f -name index.html | head -n 1)" \
     && test -n "$BUILD_INDEX" \
