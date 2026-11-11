@@ -435,9 +435,19 @@ export class CadastroComponent implements OnInit {
 
     const arquivo = input.files[0];
 
+    if (!arquivo.name.toLowerCase().endsWith('.pdf')) {
+      alert('O RG deve estar em formato PDF.');
+      input.value = '';
+      this.rgFile = undefined;
+      this.cadastroForm.patchValue({ rg: null });
+      return;
+    }
+
     if (arquivo.size > this.MAX_RG) {
       alert('O RG deve possuir no máximo 2 MB.');
       input.value = '';
+      this.rgFile = undefined;
+      this.cadastroForm.patchValue({ rg: null });
       return;
     }
 
@@ -460,9 +470,19 @@ export class CadastroComponent implements OnInit {
 
     const arquivo = input.files[0];
 
+    if (!arquivo.name.toLowerCase().endsWith('.pdf')) {
+      alert('O Cartão CNPJ deve estar em formato PDF.');
+      input.value = '';
+      this.cnpjFile = undefined;
+      this.cadastroForm.patchValue({ cartaoCnpj: null });
+      return;
+    }
+
     if (arquivo.size > this.MAX_CNPJ) {
       alert('O Cartão CNPJ deve possuir no máximo 2 MB.');
       input.value = '';
+      this.cnpjFile = undefined;
+      this.cadastroForm.patchValue({ cartaoCnpj: null });
       return;
     }
 
@@ -483,12 +503,29 @@ export class CadastroComponent implements OnInit {
     }
 
     const arquivos = Array.from(input.files);
+    const extensoesPermitidas = ['.png', '.jpg', '.jpeg', '.svg'];
+    const arquivoInvalido = arquivos.find(
+      (arquivo) =>
+        !extensoesPermitidas.some((extensao) =>
+          arquivo.name.toLowerCase().endsWith(extensao),
+        ),
+    );
+
+    if (arquivoInvalido) {
+      alert('As fotos devem estar nos formatos PNG, JPG, JPEG ou SVG.');
+      input.value = '';
+      this.fotos = [];
+      this.cadastroForm.patchValue({ fotos: null });
+      return;
+    }
 
     const tamanhoTotal = arquivos.reduce((total, foto) => total + foto.size, 0);
 
     if (tamanhoTotal > this.MAX_FOTOS) {
       alert('O conjunto das fotos deve possuir no máximo 5 MB.');
       input.value = '';
+      this.fotos = [];
+      this.cadastroForm.patchValue({ fotos: null });
       return;
     }
 

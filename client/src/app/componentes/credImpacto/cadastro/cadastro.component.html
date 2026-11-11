@@ -431,7 +431,7 @@
                 </h5>
                 <!-- RG -->
                 <div class="upload-area">
-                  <input type="file" (change)="uploadRg($event)" class="form-control">
+                  <input type="file" accept=".pdf,application/pdf" (change)="uploadRg($event)" class="form-control">
                   <p>
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                     Clique para selecionar o RG
@@ -449,7 +449,7 @@
                 </div>
                 <!-- CNPJ -->
                 <div class="upload-area">
-                  <input type="file" (change)="uploadCnpj($event)" class="form-control">
+                  <input type="file" accept=".pdf,application/pdf" (change)="uploadCnpj($event)" class="form-control">
                   <p>
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                     Clique para selecionar o CNPJ
@@ -471,7 +471,8 @@
                     Fotos da atividade
                   </label>
 
-                  <input type="file" multiple class="form-control" (change)="uploadFotos($event)">
+                  <input type="file" accept=".png,.jpg,.jpeg,.svg,image/png,image/jpeg,image/svg+xml"
+                    multiple class="form-control" (change)="uploadFotos($event)">
                   <p>
                     <i class="fa-solid fa-cloud-arrow-up"></i>
                     Clique para selecionar as Fotos
@@ -480,6 +481,7 @@
                     <i class="fa-solid fa-down-left-and-up-right-to-center"></i>
                     Tamanho total de fotos: 5MB
                   </p>
+                  <p>Formatos aceitos: PNG, JPG, JPEG e SVG.</p>
                   @for(file of fotos; track file.name){
                   <div class="arquivo-item">
                     <i class="fa-solid fa-image"></i>
