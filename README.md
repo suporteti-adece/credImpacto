@@ -1457,8 +1457,8 @@ Próximas evoluções previstas podem incluir:
 
 ```bash
 # Clonar
-git clone <https://github.com/Pakato14/forne_ce>
-cd forne_ce
+git clone <https://github.com/suporteti-adece/credImpacto.git>
+cd credImpacto
 
 # Configuração
 cp .env.example .env
