@@ -1,0 +1,240 @@
+:host {
+  --ink: #123e42;
+  --muted: #58716e;
+  --teal: #14877d;
+  --page: #f2f7f5;
+  display: block;
+}
+
+.construction-page {
+  min-height: calc(100svh - 80px);
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 5vw, 72px);
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 12% 18%, rgb(212 236 228 / 55%), transparent 32%),
+    radial-gradient(ellipse at 91% 83%, rgb(225 239 231 / 70%), transparent 30%),
+    var(--page);
+}
+
+.construction-card {
+  width: min(100%, 1560px);
+  min-height: clamp(560px, 72svh, 860px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: center;
+  gap: clamp(20px, 4vw, 64px);
+  padding: clamp(36px, 6vw, 96px);
+  overflow: hidden;
+  border: 1px solid rgb(18 62 66 / 7%);
+  border-radius: clamp(24px, 3vw, 42px);
+  background: rgb(255 255 255 / 90%);
+  box-shadow: 0 28px 90px rgb(34 79 70 / 10%);
+}
+
+.construction-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 610px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: clamp(42px, 6vw, 80px);
+}
+
+.brand img {
+  display: block;
+  width: clamp(150px, 15vw, 220px);
+  height: auto;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border: 1px solid #d5e9e3;
+  border-radius: 999px;
+  background: #f3f9f6;
+  color: #39766b;
+  font-size: clamp(0.78rem, 1vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  flex: 0 0 9px;
+  border-radius: 50%;
+  background: #4aa782;
+  box-shadow: 0 0 0 4px rgb(74 167 130 / 13%);
+}
+
+h1 {
+  margin: 28px 0 20px;
+  color: var(--ink);
+  font-family: "Work Sans", Arial, sans-serif;
+  font-size: clamp(2.5rem, 5.2vw, 5.35rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1.04;
+}
+
+h1 span {
+  color: var(--teal);
+}
+
+.construction-description {
+  max-width: 520px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.8;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 34px;
+  padding: 14px 20px;
+  border: 2px solid var(--teal);
+  border-radius: 12px;
+  color: var(--teal);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.back-link:hover {
+  transform: translateY(-2px);
+  background: var(--teal);
+  color: #fff;
+}
+
+.back-link:focus-visible,
+.brand:focus-visible {
+  outline: 3px solid #e9a94f;
+  outline-offset: 5px;
+}
+
+.back-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.signature {
+  margin: clamp(38px, 6vw, 74px) 0 0;
+  color: #8a9b97;
+  font-size: 0.88rem;
+  letter-spacing: 0.025em;
+}
+
+.construction-art {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+.artwork {
+  display: block;
+  width: 100%;
+  max-width: 720px;
+  height: auto;
+}
+
+@media (min-width: 1800px) {
+  .construction-card {
+    gap: 80px;
+  }
+}
+
+@media (max-width: 900px) {
+  .construction-page {
+    min-height: calc(100svh - 72px);
+    padding: clamp(20px, 5vw, 48px);
+  }
+
+  .construction-card {
+    min-height: 0;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: clamp(30px, 7vw, 64px);
+  }
+
+  .construction-copy {
+    max-width: 680px;
+    margin-inline: auto;
+  }
+
+  .brand {
+    margin-bottom: clamp(32px, 6vw, 52px);
+  }
+
+  .construction-art {
+    width: min(100%, 580px);
+    margin: -8px auto -20px;
+  }
+
+  .signature {
+    margin-top: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .construction-page {
+    min-height: calc(100svh - 64px);
+    padding: 16px;
+  }
+
+  .construction-card {
+    gap: 0;
+    padding: 26px 22px 18px;
+    border-radius: 24px;
+  }
+
+  .brand {
+    margin-bottom: 32px;
+  }
+
+  .brand img {
+    width: 148px;
+  }
+
+  h1 {
+    margin-top: 22px;
+    font-size: clamp(2.4rem, 11vw, 3.2rem);
+  }
+
+  .construction-description {
+    font-size: 0.97rem;
+    line-height: 1.7;
+  }
+
+  .back-link {
+    margin-top: 26px;
+    padding: 12px 15px;
+    font-size: 0.93rem;
+  }
+
+  .signature {
+    margin-top: 28px;
+    font-size: 0.78rem;
+  }
+
+  .construction-art {
+    width: calc(100% + 24px);
+    margin: 0 -12px -10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-link {
+    transition: none;
+  }
+}

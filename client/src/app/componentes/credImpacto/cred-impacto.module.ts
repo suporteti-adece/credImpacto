@@ -13,6 +13,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { ToastrModule } from 'ngx-toastr';
 import { EditarDadosComponent } from './editar-dados/editar-dados.component';
 import { DiretivasModule } from '../../directives/diretivas.module';
+import { BaseCondicoesComponent } from './base-condicoes/base-condicoes.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DiretivasModule } from '../../directives/diretivas.module';
     FaqComponent,
     FaleConoscoComponent,
     CadastroComponent,
-    EditarDadosComponent
+    EditarDadosComponent,
+    BaseCondicoesComponent
   ],
   imports: [
     CommonModule,

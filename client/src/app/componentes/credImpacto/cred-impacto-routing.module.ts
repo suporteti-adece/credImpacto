@@ -8,6 +8,7 @@ import { FaqComponent } from './faq/faq.component';
 import { FaleConoscoComponent } from './fale-conosco/fale-conosco.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { EditarDadosComponent } from './editar-dados/editar-dados.component';
+import { BaseCondicoesComponent } from './base-condicoes/base-condicoes.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'editdados',
     component: EditarDadosComponent
+  },
+  {
+    path: 'basecondicoes',
+    component: BaseCondicoesComponent
   }
 ];
 
