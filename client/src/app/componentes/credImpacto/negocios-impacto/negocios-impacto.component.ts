@@ -20,12 +20,12 @@ export class NegociosImpactoComponent {
 
     {
       titulo: 'Educação comunitária',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/EDUCACAO COMUNITARIA.jpeg',
     },
 
     {
       titulo: 'Inclusão produtiva de mulheres',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/Inclusao produtiva de mulheres.jpeg',
     },
 
     {
@@ -35,7 +35,7 @@ export class NegociosImpactoComponent {
 
     {
       titulo: 'Tecnologia social',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/TECNOLOGIA SOCIAL.jpeg',
     },
 
     {
@@ -45,12 +45,12 @@ export class NegociosImpactoComponent {
 
     {
       titulo: 'Energia limpa',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/ENERGIA LIMPA.jpeg',
     },
 
     {
       titulo: 'Empreendedorismo comunitário',
-      imagem: 'assets/imgs/imagens/exemplo_atuacao.png',
+      imagem: 'assets/imgs/imagens/EMPREENDEDORISMO COMUNITÁRIO.jpeg',
     },
 
   ];

@@ -60,6 +60,9 @@
 
           <div class="conteudo">
             <form [formGroup]="cadastroForm" (ngSubmit)="submit()">
+              <div class="alert alert-warning py-2" role="alert">
+                Os campos marcados com <span class="text-danger fw-bold">*</span> são obrigatórios.
+              </div>
 
               <!--====================================================
               ETAPA 1
@@ -79,7 +82,7 @@
               <div class="row">
                 <div class="col-md-12 mb-3">
                   <label>
-                    Tipo de proponente
+                    Tipo de proponente <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <select class="form-select" formControlName="tipo_proponente">
                     <option value="">
@@ -102,7 +105,7 @@
 
                 <div class="col-md-12 mb-3">
                   <label>
-                    Nome completo (Responsável)
+                    Nome completo (Responsável) <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <input class="form-control" type="text" formControlName="nome_responsavel">
                   @if(f['nome_responsavel'].touched && f['nome_responsavel'].invalid){
@@ -118,7 +121,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label>
-                    CPF
+                    CPF <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <input type="text" appCpfMask class="form-control" formControlName="cpf"
                     (blur)="consultaCPF(cadastroForm.get('cpf')?.value, cadastroForm)">
@@ -129,7 +132,7 @@
 
                 <div class="col-md-6 mb-3">
                   <label>
-                    Whatsapp
+                    Whatsapp <span class="text-danger" aria-hidden="true">*</span>
                   </label>
 
                   <input type="text" class="form-control" formControlName="telefone" appTelefoneMascara
@@ -145,7 +148,7 @@
 
                 <div class="col-md-6 mb-3">
                   <label>
-                    Email
+                    Email <span class="text-danger" aria-hidden="true">*</span>
                   </label>
 
                   <input class="form-control" type="email" formControlName="email"
@@ -156,7 +159,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                   <label>
-                    CNPJ
+                    CNPJ <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <input appCnpjMask appCnpjValidacao type="text" class="form-control" formControlName="cnpj"
                     (blur)="consultarEmpresa(cadastroForm.get('cnpj')?.value)">
@@ -170,7 +173,7 @@
 
                 <div class="col-md-12 mb-3">
                   <label>
-                    Nome do empreendimento
+                    Nome do empreendimento <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <input class="form-control" type="text" formControlName="nome_empreendimento">
                   <div class="text-danger mt-1"
@@ -180,7 +183,7 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                  <label>Senha</label>
+                  <label>Senha <span class="text-danger" aria-hidden="true">*</span></label>
                   <input type="password" class="form-control" formControlName="password">
                   <div class="text-danger mt-1" *ngIf="f['password'].touched && f['password'].errors">
                     <small *ngIf="f['password'].errors['required']">
@@ -194,7 +197,7 @@
                 </div>
 
                 <div class="col-md-6 mb-3">
-                  <label>Confirmar senha</label>
+                  <label>Confirmar senha <span class="text-danger" aria-hidden="true">*</span></label>
                   <input type="password" class="form-control" formControlName="confirm_password">
                   <div class="text-danger mt-1" *ngIf="f['confirm_password'].touched">
                     <small *ngIf="f['confirm_password'].errors?.['required']">
@@ -210,7 +213,7 @@
                 <div class="col-md-4 mb-3">
 
                   <label>
-                    CEP
+                    CEP <span class="text-danger" aria-hidden="true">*</span>
                   </label>
 
                   <input type="text" appCepMascara class="form-control" formControlName="cep" (blur)="buscarCEP()">
@@ -221,7 +224,7 @@
 
                 <div class="col-md-8 mb-3">
                   <label>
-                    Cidade
+                    Cidade <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <select name="city_id" id="city_id" class="form-select" formControlName="cidade">
                     <option value="">
@@ -241,20 +244,20 @@
 
                 <div class="col-md-4 mb-3">
                   <label>
-                    Bairro
+                    Bairro <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <input type="text" class="form-control" formControlName="bairro">
                 </div>
                 <div class="col-md-8 mb-3">
                   <label>
-                    Rua
+                    Rua <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <input type="text" class="form-control" formControlName="rua">
                 </div>
 
                 <div class="col-md-4 mb-3">
                   <label>
-                    Numero
+                    Numero <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <input type="text" class="form-control" formControlName="numero">
                 </div>
@@ -331,7 +334,7 @@
 
               <div class="mb-4">
                 <label class="mb-3">
-                  Possui cadastro ativo no CADIMPACTO Nacional?
+                  Possui cadastro ativo no CADIMPACTO Nacional? <span class="text-danger" aria-hidden="true">*</span>
                 </label>
 
                 <div>
@@ -389,7 +392,7 @@
 
               <div class="mb-4">
                 <label>
-                  Resumo do negócio
+                  Resumo do negócio <span class="text-danger" aria-hidden="true">*</span>
                 </label>
                 <textarea rows="6" class="form-control" formControlName="resumo_negocio"></textarea>
                 <div class="text-end mt-2">
@@ -496,6 +499,7 @@
                   <input type="checkbox" class="form-check-input" formControlName="aceite_termos">
                   <label class="form-check-label">
                     Declaro que li e concordo com os termos acima e autorizo a consulta cadastral e de crédito do CNPJ informado.
+                    <span class="text-danger" aria-hidden="true">*</span>
                   </label>
                   <div class="text-danger mt-2" *ngIf="f['aceite_termos'].touched && f['aceite_termos'].invalid">
                     Você precisa aceitar a declaração.

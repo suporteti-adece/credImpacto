@@ -68,7 +68,7 @@ export class FluxoCapacitacaoComponent {
       subtitulo: 'Soluções criativas para desafios sociais',
       descricao:
         'Desenvolvimento de modelos inovadores com foco em impacto territorial, sustentabilidade e transformação comunitária.',
-      imagem: 'assets/imgs/imagens/trilha_inovacao.jpg',
+      imagem: 'assets/imgs/imagens/MODULO DE RECONHECIMENTO DE IMPACTO.jpeg',
       cor: 'azul',
       invertido: false,
     },
@@ -77,7 +77,7 @@ export class FluxoCapacitacaoComponent {
       subtitulo: 'Capacitação em modelos de negócios',
       descricao:
         'Orientação técnica para gestão de clientes, mercados, produtos, receitas e custos.',
-      imagem: 'assets/imgs/imagens/trilha_gestao_2.jpg',
+      imagem: 'assets/imgs/imagens/MODULO DE GESTÃO.jpeg',
       cor: 'verde',
       invertido: true,
     },
@@ -87,7 +87,7 @@ export class FluxoCapacitacaoComponent {
       subtitulo: 'Avaliação e mensuração de impacto',
       descricao:
         'Módulo formativo para mensuração e acompanhamento dos negócios de impacto.',
-      imagem: 'assets/imgs/imagens/trilha_monitoramento.jpg',
+      imagem: 'assets/imgs/imagens/MODULO DE MONITORAMENTO.jpeg',
       cor: 'azul',
       invertido: false,
     },
