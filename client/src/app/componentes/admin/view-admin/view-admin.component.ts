@@ -222,6 +222,16 @@ export class ViewAdminComponent implements OnInit {
     this.paginatedAgentes = this.agentesFiltradas.slice(inicio, fim);
   }
 
+  formatarCpf(cpf: string | null | undefined): string {
+    const digitos = String(cpf ?? '').replace(/\D/g, '');
+
+    if (digitos.length !== 11) {
+      return cpf ?? '';
+    }
+
+    return digitos.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+  }
+
   get paginas(): number[] {
     return Array.from({ length: this.totalPages }, (_, index) => index + 1);
   }

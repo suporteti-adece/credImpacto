@@ -163,8 +163,7 @@ export class UserService {
         transformedData.email = emailOrCpf;
         delete transformedData.cpf;
       } else {
-        // Se não tem @, assume que é CPF
-        transformedData.cpf = emailOrCpf;
+        transformedData.cpf = String(emailOrCpf).replace(/\D/g, '');
         delete transformedData.email;
       }
     }

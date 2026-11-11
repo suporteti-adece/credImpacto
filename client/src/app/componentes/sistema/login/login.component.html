@@ -35,7 +35,9 @@
             <span class="input-group-text">
               <i class="fa-solid fa-envelope"></i>
             </span>
-            <input type="text" class="form-control" placeholder="Digite seu e-mail ou CPF" appCpfMask appCpfOrEmailValidator name="emailCpf" [(ngModel)]="loginUsers.email" #emailCpf="ngModel" required>
+            <input type="text" class="form-control" placeholder="Digite seu e-mail ou CPF" appCpfOrEmailValidator
+              name="emailCpf" [ngModel]="loginUsers.email"
+              (ngModelChange)="atualizarIdentificador($event)" #emailCpf="ngModel" required>
           </div>
           <div class="invalid-feedback d-block" *ngIf="emailCpf.invalid && emailCpf.touched">
             <span *ngIf="emailCpf.errors?.['required']">
@@ -123,8 +125,9 @@
                 <i class="fa-solid fa-envelope"></i>
               </span>
               <input type="text" id="user_email_reset" name="user_email_reset" class="form-control"
-                placeholder="exemplo@email.com ou 123.456.789-00" appCpfMask appCpfOrEmailValidator
-                [(ngModel)]="loginUsers.email" [ngModelOptions]="{ updateOn: 'blur' }" #user_email="ngModel" required />
+                placeholder="exemplo@email.com ou 123.456.789-00" appCpfOrEmailValidator
+                [ngModel]="loginUsers.email" (ngModelChange)="atualizarIdentificador($event)"
+                #user_email="ngModel" required />
             </div>
 
             <div class="invalid-feedback d-block" *ngIf="user_email.invalid && user_email.touched">

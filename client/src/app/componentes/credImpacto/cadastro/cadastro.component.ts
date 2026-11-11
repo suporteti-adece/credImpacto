@@ -16,6 +16,7 @@ import { Cidade } from '../../../model/cidade.model';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { cpfValidator } from '../../../validators/cpf-email.validators';
 
 interface DadosEmpresa {
   cnpj: string | null;
@@ -105,7 +106,7 @@ export class CadastroComponent implements OnInit {
 
         tipo_proponente: ['', Validators.required],
         nome_responsavel: ['', [Validators.required, Validators.minLength(3)]],
-        cpf: ['', Validators.required],
+        cpf: ['', [Validators.required, cpfValidator()]],
         telefone: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         cnpj: ['', Validators.required],

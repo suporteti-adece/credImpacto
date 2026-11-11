@@ -28,6 +28,19 @@ describe('CadastroComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should validate the CPF as it is entered', () => {
+    const cpfControl = component.f['cpf'];
+
+    cpfControl.setValue('529.982.247');
+    expect(cpfControl.errors).toEqual({ cpfIncomplete: true });
+
+    cpfControl.setValue('529.982.247-24');
+    expect(cpfControl.errors).toEqual({ cpfInvalid: true });
+
+    cpfControl.setValue('529.982.247-25');
+    expect(cpfControl.valid).toBeTrue();
+  });
+
   it('should advance from impact to documents when visible fields are filled', () => {
     spyOn(window, 'scroll');
     component.step = 2;

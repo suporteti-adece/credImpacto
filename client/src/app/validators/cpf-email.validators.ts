@@ -5,19 +5,14 @@ import {
 } from '@angular/forms';
 
 export function cpfOrEmailValidator(): ValidatorFn {
-
   return (control: AbstractControl): ValidationErrors | null => {
-
     const value = control.value?.trim();
 
-    // Deixa o required cuidar do campo vazio
     if (!value) {
       return null;
     }
 
-    // Se possui @, valida como e-mail
     if (value.includes('@')) {
-
       const emailRegex =
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -26,34 +21,41 @@ export function cpfOrEmailValidator(): ValidatorFn {
         : { invalidCpfOrEmail: true };
     }
 
-    // Caso contrário, valida como CPF
-    const cpf = value.replace(/\D/g, '');
-
-    if (cpf.length !== 11) {
-      return { invalidCpfOrEmail: true };
-    }
-
-    return validarCPF(cpf)
+    return validarCPF(value.replace(/\D/g, ''))
       ? null
       : { invalidCpfOrEmail: true };
   };
 }
 
+export function cpfValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value?.trim();
 
-/**
- * Valida CPF
- */
+    if (!value) {
+      return null;
+    }
+
+    const cpf = value.replace(/\D/g, '');
+
+    if (cpf.length < 11) {
+      return { cpfIncomplete: true };
+    }
+
+    return cpf.length === 11 && validarCPF(cpf)
+      ? null
+      : { cpfInvalid: true };
+  };
+}
+
 function validarCPF(cpf: string): boolean {
+  if (cpf.length !== 11) {
+    return false;
+  }
 
-  // Rejeita números repetidos:
-  // 00000000000
-  // 11111111111
-  // etc.
   if (/^(\d)\1+$/.test(cpf)) {
     return false;
   }
 
-  // Primeiro dígito verificador
   let soma = 0;
 
   for (let i = 0; i < 9; i++) {
@@ -70,7 +72,6 @@ function validarCPF(cpf: string): boolean {
     return false;
   }
 
-  // Segundo dígito verificador
   soma = 0;
 
   for (let i = 0; i < 10; i++) {

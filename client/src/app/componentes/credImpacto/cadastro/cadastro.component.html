@@ -125,8 +125,14 @@
                   </label>
                   <input type="text" appCpfMask class="form-control" formControlName="cpf"
                     (blur)="consultaCPF(cadastroForm.get('cpf')?.value, cadastroForm)">
-                  <div class="text-danger mt-1" *ngIf="f['cpf'].touched && f['cpf'].invalid">
+                  <div class="text-danger mt-1" *ngIf="f['cpf'].touched && f['cpf'].errors?.['required']">
                     CPF obrigatório.
+                  </div>
+                  <div class="text-danger mt-1" *ngIf="f['cpf'].dirty && f['cpf'].errors?.['cpfIncomplete']">
+                    Informe os 11 dígitos do CPF.
+                  </div>
+                  <div class="text-danger mt-1" *ngIf="f['cpf'].dirty && f['cpf'].errors?.['cpfInvalid']">
+                    CPF inválido.
                   </div>
                 </div>
 
